@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Things I Love About You 💗</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const envBtn = document.getElementById("envelopeBtn");
+  const heartLayer = document.getElementById("heartLayer");
+
+  if (!envBtn || !heartLayer) {
+    console.log("Envelope setup missing:", { envBtn, heartLayer });
+    return;
+  }
+
+  function spawnHearts(count = 100) {
+    for (let i = 0; i < count; i++) {
+      const h = document.createElement("span");
+      h.className = "pop-heart";
+      h.textContent = "♥";
+
+      const dx = (Math.random() - 0.5) * 240;
+      const dy = -60 - Math.random() * 220;
+
+      h.style.setProperty("--dx", dx + "px");
+      h.style.setProperty("--dy", dy + "px");
+      h.style.fontSize = (14 + Math.random() * 16) + "px";
+      h.style.animationDelay = (Math.random() * 0.12) + "s";
+
+      heartLayer.appendChild(h);
+      setTimeout(() => h.remove(), 1300);
+    }
+  }
+
+  envBtn.addEventListener("click", () => {
+    envBtn.classList.toggle("open");
+    spawnHearts(18);
+  });
+});
+</script>
+<body>
+  <div class="floating-hearts">
+    <span>♥</span><span>♥</span><span>♥</span><span>♥</span>
+    <span>♥</span><span>♥</span><span>♥</span><span>♥</span>
+  </div>
+
+  <div class="page-wrapper">
+    <header class="main-header float-soft">
+      <h1>Random gifts from u 💗</h1>
+      <p class="subtitle">You will alwyas be my favorite gift no matter what.</p>
+
+      <button id="themeToggle" class="theme-toggle" type="button">☀️</button>
+
+      <nav class="top-btns">
+                <a href="playlist.html" class="top-btn"> Our Playlist</a>
+                <a href="quiz.html" class="top-btn"> Quizz </a>
+                <a href="jokes.html" class="top-btn">Our Inside Jokes</a>
+                <a href="index.html" class="top-btn">← main page</a>
+      </nav>
+    </header>
+    <main class="love-page">
+      
+      <!-- SECTION 2: Gifts (click presents to open) -->
+      <section class="love-section reveal-on-scroll" id="gifts">
+        <div class="section-head">
+        </div>
+
+        <div class="gift-grid">
+            <!-- gift one  -->
+          <div class="gift-card">
+            <button class="gift-present" type="button" data-gift="gift1" aria-label="Open gift 1">
+              <span class="gift-lid"></span>
+              <span class="gift-box"></span>
+              <span class="gift-bow"></span>
+            </button>
+
+            <div class="gift-reveal" id="gift1" hidden>
+              <div class="gift-photos">
+                <img src="pics/flowers selfie.jpg">
+                <img src="pics/kkkkk.jpg" >
+                <img src="pics/flowers on table.jpg" >
+              </div>
+              <p class="subtitle">
+                I will never forget how these flowers made me feel 
+                I still smile and tear up when i think about that day
+              </p>
+            </div>
+          </div>
+
+          <!-- Gift 2 -->
+          <div class="gift-card">
+            <button class="gift-present" type="button" data-gift="gift2" aria-label="Open gift 2">
+              <span class="gift-lid"></span>
+              <span class="gift-box"></span>
+              <span class="gift-bow"></span>
+            </button>
+
+            <div class="gift-reveal" id="gift2" hidden>
+              <div class="gift-photos">
+                <img src="pics/scarf and card.jpg" alt="gift 2 photo 1">
+                <img src="pics/scarf polo.jpg" alt="gift 2 photo 2">
+                <img src="pics/scarf selfie.jpg" alt="gift 2 photo 3">
+              </div>
+              <p class="subtitle">
+                Even though u got me this scarf after 1000 hint i gave i still beleive that u did it out of love and this makes me feel like i have the world  💗
+              </p>
+            </div>
+          </div>
+
+          <!-- Gift 3 -->
+          <div class="gift-card">
+            <button class="gift-present" type="button" data-gift="gift3" aria-label="Open gift 3">
+              <span class="gift-lid"></span>
+              <span class="gift-box"></span>
+              <span class="gift-bow"></span>
+            </button>
+
+            <div class="gift-reveal" id="gift3" hidden>
+              <div class="gift-photos">
+                <img src="pics/Capture d’écran 2026-01-05 163536.png" alt="gift 3 photo 1">
+                <img src="pics/Capture d’écran 2026-01-05 163552.png" alt="gift 3 photo 2">
+                <img src="pics/Capture d’écran 2026-01-05 163614.png" alt="gift 3 photo 3">
+              </div>
+              <p class="subtitle">
+                Starting the new year w flowers from u is the best thing everrrrr 
+                I love you sooooo much 🌹
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Theme toggle (same as other pages) -->
+  <script>
+  (function () {
+      const body = document.body;
+      const toggle = document.getElementById("themeToggle");
+      if (!toggle) return;
+
+      const saved = localStorage.getItem("theme");
+      if (saved === "light") {
+          body.classList.add("light-mode");
+          toggle.textContent = "🌙";
+      } else {
+          toggle.textContent = "☀️";
+      }
+
+      toggle.addEventListener("click", () => {
+          const isLight = body.classList.toggle("light-mode");
+          toggle.textContent = isLight ? "🌙" : "☀️";
+          localStorage.setItem("theme", isLight ? "light" : "dark");
+      });
+  })();
+  </script>
+
+  <!-- Gifts open + section animations -->
+  <script>
+  // Reveal on scroll animation
+  (function () {
+    const items = document.querySelectorAll(".reveal-on-scroll");
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) e.target.classList.add("revealed");
+      });
+    }, { threshold: 0.15 });
+
+    items.forEach(el => io.observe(el));
+  })();
+
+  // Gift open/close
+  (function () {
+    const gifts = document.querySelectorAll(".gift-present");
+    gifts.forEach(btn => {
+      btn.addEventListener("click", () => {
+        const id = btn.getAttribute("data-gift");
+        const panel = document.getElementById(id);
+
+        btn.classList.toggle("opened");
+        const isOpen = btn.classList.contains("opened");
+
+        if (isOpen) {
+          panel.hidden = false;
+          panel.classList.add("gift-pop");
+        } else {
+          panel.hidden = true;
+        }
+      });
+    });
+  })();
+
+  // checklist hearts toggle
+  (function () {
+    document.querySelectorAll(".check-item").forEach(item => {
+      item.addEventListener("click", () => {
+        item.classList.toggle("done");
+        const heart = item.querySelector(".check-heart");
+        heart.textContent = item.classList.contains("done") ? "♥" : "♡";
+      });
+    });
+  })();
+  
+
+// heart cursor effects
+(function(){
+    let last = 0;
+    function heart(x,y,cls,size){
+        const h=document.createElement("span");
+        h.textContent="♥";
+        h.className=cls;
+        h.style.left=x+"px";
+        h.style.top=y+"px";
+        if(size)h.style.fontSize=size;
+        document.body.append(h);
+        setTimeout(()=>h.remove(),1000);
+    }
+    document.addEventListener("mousemove",e=>{
+        if(Date.now()-last<80)return;
+        last=Date.now();
+        heart(e.clientX,e.clientY,"cursor-heart","16px");
+    });
+    document.addEventListener("click",e=>{
+        heart(e.clientX,e.clientY,"click-heart","30px");
+    });
+})();
+</script>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const env = document.getElementById("envelopeBtn");
+  const layer = document.getElementById("heartLayer");
+
+  function hearts(n = 200) {
+    for (let i = 0; i < n; i++) {
+      const h = document.createElement("span");
+      h.className = "pop-heart";
+      h.textContent = "♥";
+
+      h.style.setProperty("--dx", (Math.random() - 0.5) * 260 + "px");
+      h.style.setProperty("--dy", -80 - Math.random() * 220 + "px");
+      h.style.animationDelay = Math.random() * 0.15 + "s";
+
+      layer.appendChild(h);
+      setTimeout(() => h.remove(), 1400);
+    }
+  }
+
+  env.addEventListener("click", () => {
+    env.classList.toggle("open");
+    hearts();
+  });
+});
+</script> 
+    
+</body>
+</html>
+

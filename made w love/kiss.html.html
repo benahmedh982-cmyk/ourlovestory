@@ -1,0 +1,149 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HUGGGGGGGG</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const envBtn = document.getElementById("envelopeBtn");
+  const heartLayer = document.getElementById("heartLayer");
+
+  if (!envBtn || !heartLayer) {
+    console.log("Envelope setup missing:", { envBtn, heartLayer });
+    return;
+  }
+
+  function spawnHearts(count = 16) {
+    for (let i = 0; i < count; i++) {
+      const h = document.createElement("span");
+      h.className = "pop-heart";
+      h.textContent = "♥";
+
+      const dx = (Math.random() - 0.5) * 240;
+      const dy = -60 - Math.random() * 220;
+
+      h.style.setProperty("--dx", dx + "px");
+      h.style.setProperty("--dy", dy + "px");
+      h.style.fontSize = (14 + Math.random() * 16) + "px";
+      h.style.animationDelay = (Math.random() * 0.12) + "s";
+
+      heartLayer.appendChild(h);
+      setTimeout(() => h.remove(), 1300);
+    }
+  }
+
+  envBtn.addEventListener("click", () => {
+    envBtn.classList.toggle("open");
+    spawnHearts(18);
+  });
+});
+</script>
+
+
+<body>
+  <div class="floating-hearts">
+    <span>♥</span><span>♥</span><span>♥</span><span>♥</span>
+    <span>♥</span><span>♥</span><span>♥</span><span>♥</span>
+  </div>
+
+  <div class="page-wrapper">
+    <header class="main-header">
+      <h1>♡ بوستين عالخدّين و عالشفايفين ♡ </h1>
+      <p class="subtitle"> I CANT WAIT TO KISS AND MOLEST U IRL 
+
+      <button id="themeToggle" class="theme-toggle" type="button">☀️</button>
+
+      <nav class="top-btns">
+        <a class="top-btn" href="index.html">← Main page</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hug-gif-row float-soft">
+  
+        <div class="hug-gif-circle">
+          <img src="pics/milk-mocha.gif" >
+        </div>
+        <div class="hug-gif-circle">
+          <img src="pics/KISSSS.gif" >
+        </div>
+        <div class="hug-gif-circle">
+          <img src="pics/KISSEESSSSS.gif">
+        </div>
+        <div class="hug-gif-circle">
+          <img src="pics/NUM2.gif">
+        </DIV>
+        <div class="hug-gif-circle">
+          <img src="pics/KISSKISS.gif" >
+        </div>
+      </section>
+       <main>
+    <section class="image-grid float-soft">
+        <div class="image-card"><img src="pics/kiss (2).jpg" ></div>
+        <div class="image-card"><img src="pics/kiss.jpg" ></div>
+        <div class="image-card"><img src="pics/kisss.jpg" ></div>
+        </section>
+</main>
+  </div>
+
+
+    <script>
+(function () {
+    let lastHeartTime = 0;
+
+    function spawnHeart(x, y, cls, size) {
+        const span = document.createElement("span");
+        span.textContent = "♥";
+        span.className = cls;
+        span.style.left = x + "px";
+        span.style.top = y + "px";
+        if (size) span.style.fontSize = size;
+        document.body.appendChild(span);
+        setTimeout(() => span.remove(), 1000);
+    }
+
+    // small hearts following the mouse
+    document.addEventListener("mousemove", (e) => {
+        const now = Date.now();
+        if (now - lastHeartTime < 80) return;
+        lastHeartTime = now;
+        spawnHeart(e.clientX, e.clientY, "cursor-heart", "16px");
+    });
+
+    // bigger heart when you click
+    document.addEventListener("click", (e) => {
+        spawnHeart(e.clientX, e.clientY, "click-heart", "30px");
+    });
+})();
+</script>
+
+<script>
+(function () {
+    const body = document.body;
+    const toggle = document.getElementById("themeToggle");
+    if (!toggle) return;
+
+    // Load saved theme
+    const saved = localStorage.getItem("theme");
+    if (saved === "light") {
+        body.classList.add("light-mode");
+        toggle.textContent = "🌙";
+    } else {
+        toggle.textContent = "☀️";
+    }
+
+    // When you click the button
+    toggle.addEventListener("click", () => {
+        const isLight = body.classList.toggle("light-mode");
+        toggle.textContent = isLight ? "🌙" : "☀️";
+        localStorage.setItem("theme", isLight ? "light" : "dark");
+    });
+})();
+</script>
+
+</body>
+</html>

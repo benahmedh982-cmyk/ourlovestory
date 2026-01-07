@@ -1,0 +1,119 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HUGGGGGGGG</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+
+<body>
+  <div class="floating-hearts">
+    <span>♥</span><span>♥</span><span>♥</span><span>♥</span>
+    <span>♥</span><span>♥</span><span>♥</span><span>♥</span>
+  </div>
+
+  <div class="page-wrapper">
+    <header class="main-header">
+      <h1>Hug Corner 🐻🤍</h1>
+      <p class="subtitle">If I could hug you right now, I would NEVER let go  </p>
+
+      <button id="themeToggle" class="theme-toggle" type="button">☀️</button>
+
+      <nav class="top-btns">
+        <a class="top-btn" href="index.html">← Main page</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hug-gif-row float-soft">
+        <div class="hug-gif-circle">
+          <img src="pics/HUG.gif" alt="hug gif 1">
+        </div>
+        <div class="hug-gif-circle">
+          <img src="pics/HUGGG.gif" alt="hug gif 2">
+        </div>
+        <div class="hug-gif-circle">
+          <img src="pics/HUGGGGG.gif" alt="hug gif 3">
+        </div>
+        <div class="hug-gif-circle">
+          <img src="pics/MILK HUGGGGGGGG.gif" alt="hug gif 4">
+        </div>
+        <div class="hug-gif-circle">
+          <img src="pics/Hugging Hug GIF.gif" alt="hug gif 4">
+        </div>
+        <div class="hug-gif-circle">
+          <img src="pics/HUGG.gif" alt="hug gif 4">
+        </div>
+      </section>
+
+
+        <div>
+
+          <p class="subtitle">
+            HABIBI<br>
+            U have no idea about how much it means when u say "come here baby" and hug the phone when im not feeling good . As a grown ass mean w a beard u gotta be so inlove to do this and u doing it makes me feel so loved by the man of my dreams  🤍  
+          </p>
+        </div>
+      </section>
+    </main>
+  </div>
+ 
+    <script>
+(function () {
+    let lastHeartTime = 0;
+
+    function spawnHeart(x, y, cls, size) {
+        const span = document.createElement("span");
+        span.textContent = "♥";
+        span.className = cls;
+        span.style.left = x + "px";
+        span.style.top = y + "px";
+        if (size) span.style.fontSize = size;
+        document.body.appendChild(span);
+        setTimeout(() => span.remove(), 1000);
+    }
+
+    // small hearts following the mouse
+    document.addEventListener("mousemove", (e) => {
+        const now = Date.now();
+        if (now - lastHeartTime < 80) return;
+        lastHeartTime = now;
+        spawnHeart(e.clientX, e.clientY, "cursor-heart", "16px");
+    });
+
+    // bigger heart when you click
+    document.addEventListener("click", (e) => {
+        spawnHeart(e.clientX, e.clientY, "click-heart", "30px");
+    });
+})();
+</script>
+
+<script>
+(function () {
+    const body = document.body;
+    const toggle = document.getElementById("themeToggle");
+    if (!toggle) return;
+
+    // Load saved theme
+    const saved = localStorage.getItem("theme");
+    if (saved === "light") {
+        body.classList.add("light-mode");
+        toggle.textContent = "🌙";
+    } else {
+        toggle.textContent = "☀️";
+    }
+
+    // When you click the button
+    toggle.addEventListener("click", () => {
+        const isLight = body.classList.toggle("light-mode");
+        toggle.textContent = isLight ? "🌙" : "☀️";
+        localStorage.setItem("theme", isLight ? "light" : "dark");
+    });
+})();
+</script>
+
+</body>
+</html>

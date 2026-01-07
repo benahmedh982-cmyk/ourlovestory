@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ohh hell nahhh</title>
+    <link rel="stylesheet" href="style.css">
+
+
+</head>
+<body>
+    <div class="floating-hearts">
+        <span>♥</span><span>♥</span><span>♥</span><span>♥</span>
+        <span>♥</span><span>♥</span><span>♥</span><span>♥</span>
+    </div>
+
+    <div class="page-wrapper">
+        <header class="main-header float-soft">
+            <h1>NIGGAA 🤨</h1>
+            <p class="subtitle">dmn u must be so patient </p>
+            <button id="themeToggle" class="theme-toggle" type="button">☀️</button>
+            <nav class="top-btns">
+                <a href="quiz.html" class="top-btn">yeaa go do that quizz man </a>
+            </nav>
+        </header>
+
+        <main>
+    <section class="image-grid float-soft">
+        <div class="image-card"><img src="pics/1.jpeg" alt="us 1"></div>
+        <div class="image-card"><img src="pics/2.jpeg" alt="us 2"></div>
+        <div class="image-card"><img src="pics/3.jpeg" alt="us 3"></div>
+        <div class="image-card"><img src="pics/4.jpeg" alt="us 4"></div>
+        <div class="image-card"><img src="pics/5.jpeg" alt="us 5"></div>
+        <div class="image-card"><img src="pics/6.jpeg" alt="us 6"></div>
+        <div class="image-card"><img src="pics/7.jpeg" alt="us 7"></div>
+        <div class="image-card"><img src="pics/suusss me.jpg" alt="us 8"></div>
+        <div class="image-card"><img src="pics/hammoudi.jpeg" alt="us 6"></div>
+        <div class="image-card"><img src="pics/mad me.jpg" alt="us 7"></div>
+        <div class="image-card"><img src="pics/WhatsApp Image 2026-01-02 at 10.01.22 AM (4).jpeg" alt="us 8"></div>
+        <div class="image-card"><img src="pics/WhatsApp Image 2026-01-02 at 10.01.23 AM (1).jpeg" alt="us 8"></div>
+        <div class="image-card"><img src="pics/WhatsApp Image 2026-01-02 at 10.01.23 AM (16).jpeg" alt="us 8"></div>
+        <div class="image-card"><img src="pics/WhatsApp Image 2026-01-02 at 10.01.23 AM (18).jpeg" alt="us 8"></div>
+        <div class="image-card"><img src="pics/WhatsApp Image 2026-01-02 at 10.01.23 AM (17).jpeg" alt="us 8"></div>
+        <div class="image-card"><img src="pics/WhatsApp Image 2026-01-02 at 10.01.23 AM (19).jpeg" alt="us 8"></div>
+        <div class="image-card"><img src="pics/WhatsApp Image 2026-01-02 at 10.01.23 AM (2).jpeg" alt="us 8"></div>
+        <div class="image-card"><img src="pics/WhatsApp Image 2026-01-02 at 10.01.23 AM (20).jpeg" alt="us 8"></div>
+        <div class="image-card"><img src="pics/WhatsApp Image 2026-01-02 at 10.01.23 AM (7).jpeg" alt="us 8"></div>
+        <div class="image-card"><img src="pics/WhatsApp Image 2026-01-02 at 10.01.24 AM.jpeg" alt="us 8"></div>
+        <div class="image-card"><img src="pics/WhatsApp Image 2026-01-02 at 10.01.23 AM (5).jpeg" alt="us 8"></div>
+        <div class="image-card"><img src="pics/WhatsApp Image 2026-01-02 at 10.01.23 AM (6).jpeg" alt="us 8"></div>
+        <div class="image-card"><img src="pics/WhatsApp Image 2026-01-02 at 10.01.23 AM.jpeg" alt="us 8"></div>
+        <div class="image-card"><img src="pics/WhatsApp Image 2026-01-02 at 10.01.24 AM (1).jpeg" alt="us 8"></div>
+        </section>
+</main>
+
+
+
+    <script>
+(function () {
+    let lastHeartTime = 0;
+
+    function spawnHeart(x, y, cls, size) {
+        const span = document.createElement("span");
+        span.textContent = "♥";
+        span.className = cls;
+        span.style.left = x + "px";
+        span.style.top = y + "px";
+        if (size) span.style.fontSize = size;
+        document.body.appendChild(span);
+        setTimeout(() => span.remove(), 1000);
+    }
+
+    // small hearts following the mouse
+    document.addEventListener("mousemove", (e) => {
+        const now = Date.now();
+        if (now - lastHeartTime < 80) return;
+        lastHeartTime = now;
+        spawnHeart(e.clientX, e.clientY, "cursor-heart", "16px");
+    });
+
+    // bigger heart when you click
+    document.addEventListener("click", (e) => {
+        spawnHeart(e.clientX, e.clientY, "click-heart", "30px");
+    });
+})();
+</script>
+
+
+
+<script>
+(function () {
+    const body = document.body;
+    const toggle = document.getElementById("themeToggle");
+    if (!toggle) return;
+
+    // Load saved theme
+    const saved = localStorage.getItem("theme");
+    if (saved === "light") {
+        body.classList.add("light-mode");
+        toggle.textContent = "🌙";
+    } else {
+        toggle.textContent = "☀️";
+    }
+
+    // When you click the button
+    toggle.addEventListener("click", () => {
+        const isLight = body.classList.toggle("light-mode");
+        toggle.textContent = isLight ? "🌙" : "☀️";
+        localStorage.setItem("theme", isLight ? "light" : "dark");
+    });
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Our Playlist 🎧</title>
+    <link rel="stylesheet" href="style.css">
+    
+
+</head>
+<body>
+    <div class="floating-hearts">
+        <span>♥</span><span>♥</span><span>♥</span><span>♥</span>
+        <span>♥</span><span>♥</span><span>♥</span><span>♥</span>
+    </div>
+
+    <div class="page-wrapper">
+        <header class="main-header float-soft">
+            <h1>DANNCEEE</h1>
+            <button id="themeToggle" class="theme-toggle" type="button">☀️</button>
+            <nav class="top-btns">
+                <a href="jokes.html" class="top-btn"> Our Inside Jokes</a>
+                <a href="gifts.html" class="top-btn"> gifts </a>
+                <a href="quiz.html" class="top-btn"> Quizz</a>
+                <a href="index.html" class="top-btn">← main page</a>
+            </nav>
+            <div class="photo-circle">
+                            <img src="pics/DANCE.gif" >
+                            <img src="pics/GUITAR.gif" >
+                             <img src="pics/Get Down Dancing Sticker by milkmochabear.gif" >
+                            <img src="pics/Happy Get Down Sticker by milkmochabear.gif" >
+                        </div>
+        </header>
+
+        <main>
+              <div style="margin-top:10px;">
+        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/0b2TNAX7QZvGSDunbfi3m4"
+ width="100%"
+          height="380" frameborder="0"
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy">
+        </iframe>
+      </div>
+            </section>
+        </main>
+
+    </div>
+    <script>
+(function () {
+    let lastHeartTime = 0;
+
+    function spawnHeart(x, y, cls, size) {
+        const span = document.createElement("span");
+        span.textContent = "♥";
+        span.className = cls;
+        span.style.left = x + "px";
+        span.style.top = y + "px";
+        if (size) span.style.fontSize = size;
+        document.body.appendChild(span);
+        setTimeout(() => span.remove(), 1000);
+    }
+
+  
+    document.addEventListener("mousemove", (e) => {
+        const now = Date.now();
+        if (now - lastHeartTime < 80) return;
+        lastHeartTime = now;
+        spawnHeart(e.clientX, e.clientY, "cursor-heart", "16px");
+    });
+
+
+    document.addEventListener("click", (e) => {
+        spawnHeart(e.clientX, e.clientY, "click-heart", "30px");
+    });
+})();
+</script>
+
+
+
+<script>
+(function () {
+    const body = document.body;
+    const toggle = document.getElementById("themeToggle");
+    if (!toggle) return;
+
+   
+    const saved = localStorage.getItem("theme");
+    if (saved === "light") {
+        body.classList.add("light-mode");
+        toggle.textContent = "🌙";
+    } else {
+        toggle.textContent = "☀️";
+    }
+
+  
+    toggle.addEventListener("click", () => {
+        const isLight = body.classList.toggle("light-mode");
+        toggle.textContent = isLight ? "🌙" : "☀️";
+        localStorage.setItem("theme", isLight ? "light" : "dark");
+    });
+})();
+</script>
+
+</body>
+</html>
